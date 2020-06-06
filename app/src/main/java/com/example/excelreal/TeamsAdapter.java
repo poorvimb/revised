@@ -30,17 +30,17 @@ public class TeamsAdapter extends ArrayAdapter<Team> {
         }
         Team o = teams.get(port);
         if (o != null) {
-            TextView app = (TextView) v.findViewById(R.id.appid);
-            TextView dev = (TextView) v.findViewById(R.id.devid);
-            TextView hardware = (TextView) v.findViewById(R.id.hardware);
-            TextView portP = (TextView) v.findViewById(R.id.portP);
+            //TextView app = (TextView) v.findViewById(R.id.appid);
+            //TextView dev = (TextView) v.findViewById(R.id.devid);
+           // TextView hardware = (TextView) v.findViewById(R.id.hardware);
+           // TextView portP = (TextView) v.findViewById(R.id.portP);
             TextView payloadR = (TextView) v.findViewById(R.id.payload);
 
 
-            app.setText(String.valueOf(o.getApp_id()));
-            dev.setText(String.valueOf(o.getDev_id()));
-            hardware.setText(String.valueOf(o.getHardware_serial()));
-            portP.setText(String.valueOf(o.getPort()));
+            //app.setText(String.valueOf(o.getApp_id()));
+            //dev.setText(String.valueOf(o.getDev_id()));
+            //hardware.setText(String.valueOf(o.getHardware_serial()));
+            //portP.setText(String.valueOf(o.getPort()));
             payloadR.setText(String.valueOf(o.getPayload()));
 
 
