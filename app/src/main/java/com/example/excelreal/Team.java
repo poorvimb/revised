@@ -1,9 +1,5 @@
 package com.example.excelreal;
 
-import android.util.Base64;
-
-import java.io.UnsupportedEncodingException;
-
 public class Team {
     private String app_id;
     private String dev_id, hardware_serial, payload_raw;
@@ -53,7 +49,8 @@ public class Team {
     }
 
     public String getPayload()  {
-       return payload_raw;
+       String payload_rawP=payload_raw.substring(payload_raw.length()-4);
+        return payload_rawP;
     }
 
     public void setPayload(String payload_raw) {

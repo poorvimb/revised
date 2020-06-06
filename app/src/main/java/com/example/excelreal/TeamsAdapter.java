@@ -41,7 +41,10 @@ public class TeamsAdapter extends ArrayAdapter<Team> {
             //dev.setText(String.valueOf(o.getDev_id()));
             //hardware.setText(String.valueOf(o.getHardware_serial()));
             //portP.setText(String.valueOf(o.getPort()));
+
             payloadR.setText(String.valueOf(o.getPayload()));
+
+
 
 
         }
