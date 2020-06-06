@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/appid"
+        android:text="appid"
+        android:layout_width="0dp"
+        android:layout_weight=".10"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/devid"
+        android:text="devid"
+        android:layout_width="0dp"
+        android:layout_weight=".50"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/hardware"
+        android:text="hardware_serial"
+        android:layout_width="0dp"
+        android:layout_weight=".10"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/portP"
+        android:text="port"
+        android:layout_width="0dp"
+        android:layout_weight=".10"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/payload"
+        android:text="payloadraw"
+        android:layout_width="0dp"
+        android:layout_weight=".10"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
