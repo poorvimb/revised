@@ -10,7 +10,7 @@ public class Team {
     private int port;
 
 
-    public Team(String app_id, String dev_id, String hardware_serial, int port, String payload_raw)
+    public Team( String payload_raw)
     {
         this.setApp_id(app_id);
         this.setDev_id(dev_id);

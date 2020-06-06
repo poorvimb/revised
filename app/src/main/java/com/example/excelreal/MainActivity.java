@@ -72,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject row = rows.getJSONObject(r);
                 JSONArray columns = row.getJSONArray("c");
 
-                String app_id = columns.getJSONObject(0).getString("v");
-                String dev_id = columns.getJSONObject(1).getString("v");
-                String hardware_serial = columns.getJSONObject(2).getString("v");
-                int port = columns.getJSONObject(3).getInt("v");
+               // String app_id = columns.getJSONObject(0).getString("v");
+                //String dev_id = columns.getJSONObject(1).getString("v");
+               // String hardware_serial = columns.getJSONObject(2).getString("v");
+                //int port = columns.getJSONObject(3).getInt("v");
                 String payload_raw = columns.getJSONObject(4).getString("v");
 
-                Team team = new Team( app_id,  dev_id,  hardware_serial,  port, payload_raw);
+                Team team = new Team( payload_raw);
                 teams.add(team);
 
             }
