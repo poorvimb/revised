@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
+public class DownloadWebpageTask extends AsyncTask<String, Void, String>{
     AsyncResult callback;
 
     public DownloadWebpageTask(AsyncResult callback) {
@@ -20,7 +20,7 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... urls) {
+    protected String doInBackground(String... urls) {  //THIS DOWNLOADS THE WEBPAGE IN THE BACKGROUND
 
         // params comes from the execute() call: params[0] is the url.
         try {
@@ -30,16 +30,15 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         }
     }
 
-    // onPostExecute displays the results of the AsyncTask.
+
     @Override
-    protected void onPostExecute(String result) {
-        // remove the unnecessary parts from the response and construct a JSON
+    protected void onPostExecute(String result) { // constructs the JSon Objects
         int start = result.indexOf("{", result.indexOf("{") + 1);
         int end = result.lastIndexOf("}");
         String jsonResponse = result.substring(start, end);
         try {
             JSONObject table = new JSONObject(jsonResponse);
-            callback.onResult(table);
+            callback.onResult(table); //creates a table
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -49,11 +48,11 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         InputStream is = null;
 
         try {
-            URL url = new URL(urlString);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(10000 /* milliseconds */);
-            conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("GET");
+            URL url = new URL(urlString); // get the url of the webpage
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection(); //enable the connection
+            conn.setReadTimeout(10000 ); // in milliseconds
+            conn.setConnectTimeout(15000 );
+            conn.setRequestMethod("GET"); // sets the request message
             conn.setDoInput(true);
             // Starts the query
             conn.connect();
@@ -69,6 +68,7 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         }
     }
 
+    // This method reads every single line of the input and appends the data
     private String convertStreamToString(InputStream is) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();

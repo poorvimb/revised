@@ -4,16 +4,11 @@ package com.example.excelreal;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,23 +16,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
+    private String  payload_raw;
+
+
     private static final String DEBUG_TAG = "HttpExample";
-    ArrayList<Team> teams = new ArrayList<Team>();
-    ListView listview;
+    ArrayList<Data> Data1 = new ArrayList<Data>(); //creating an array list for data
+    ListView listview;   // list view for displaying as a list of items
     Button btnDownload;
 
+
+
+     //Initializes the button "download page" and the list view.
+     // It  establishes a connection and also checks for network connection
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // on click of button it extracts the data from the webpage
     public void buttonClickHandler(View view) {
         new DownloadWebpageTask(new AsyncResult() {
             @Override
@@ -61,36 +55,38 @@ public class MainActivity extends AppCompatActivity {
             }
         }).execute("https://spreadsheets.google.com/tq?key=1gGyJS2phIcmiTEEUdUhOsyqekEudBue_NtNkjKsTQrQ");
 
+
     }
 
+    // gets the columns of excel which have been converted to Json in the form of an array
     private void processJson(JSONObject object) {
 
         try {
             JSONArray rows = object.getJSONArray("rows");
 
-            for (int r = 0; r < rows.length(); ++r) {
-                JSONObject row = rows.getJSONObject(r);
-                JSONArray columns = row.getJSONArray("c");
 
-               // String app_id = columns.getJSONObject(0).getString("v");
-                //String dev_id = columns.getJSONObject(1).getString("v");
-               // String hardware_serial = columns.getJSONObject(2).getString("v");
-                //int port = columns.getJSONObject(3).getInt("v");
+            //for (int r = 0; r < rows.length(); ++r) {
+                JSONObject row = rows.getJSONObject(rows.length()-1);
+                JSONArray columns = row.getJSONArray("c");
                 String payload_raw = columns.getJSONObject(4).getString("v");
 
-                Team team = new Team( payload_raw);
-                teams.add(team);
+                Data d1 = new Data( payload_raw);
+                Data1.add(d1);
 
-            }
+           // }
 
-            final TeamsAdapter adapter = new TeamsAdapter(this, R.layout.team, teams);
-            listview.setAdapter(adapter);
+            final DataAdapter adapter = new DataAdapter(this, R.layout.data, Data1);
+            listview.setAdapter(adapter); //The list of items is displayed using listview
+
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-   // public void parseJSON(){
 
-    //}
 }
+
+
+
+
+
